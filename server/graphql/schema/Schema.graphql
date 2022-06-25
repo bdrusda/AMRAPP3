@@ -1,12 +1,12 @@
-# import Todo from "Todo.graphql"
-# import TodoInput from "Todo.graphql"
+# import Exercise from "Exercise.graphql"
+# import ExerciseInput from "Exercise.graphql"
 
 type Query {
-	todo(id: ID!): Todo
-	todos: [Todo]
+	exercise(id: ID!): Exercise
+	exercises: [Exercise]
 }
 
 type Mutation {
-	add(input: TodoInput!): Todo
-	delete(input: TodoInput!): Todo
+	add(input: ExerciseInput!): Exercise
+	delete(input: ExerciseInput!): Exercise
 }

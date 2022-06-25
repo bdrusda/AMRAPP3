@@ -1,5 +1,5 @@
 // resolvers
-import { Query, Mutation } from './resolver/TodoResolver';
+import { Query, Mutation } from './resolver/ExerciseResolver';
 
 //graphql file support
 import { join } from 'path';

@@ -3,7 +3,7 @@ import mikroORMConfig from './config/mikro-orm.config';
 import { MikroORM } from '@mikro-orm/core';
 // const entities = require('./entity');
 import BaseEntity from './entity/BaseEntity';
-import Todo from './entity/Todo';
+import Todo from './entity/Exercise';
 
 // TODO try to figure out why we need to do this and we can't just require the directory
 const entities = [BaseEntity, Todo];

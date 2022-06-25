@@ -1,0 +1,18 @@
+type Exercise {
+	id: ID!
+	name: String!
+	description: String
+	bodyPart: BodyPart
+}
+
+input ExerciseInput {
+	id: ID
+	description: String
+}
+
+enum BodyPart {
+	CHEST
+	BACK
+	LEGS
+	ARMS
+}
