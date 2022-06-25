@@ -1,0 +1,9 @@
+type Todo {
+	id: ID!
+	description: String
+}
+
+input TodoInput {
+	id: ID
+	description: String
+}
