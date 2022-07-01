@@ -3,7 +3,7 @@
 
 type Query {
 	exercise(id: ID!): Exercise
-	exercises: [Exercise]
+	exercises(input: ExerciseInput): [Exercise]
 }
 
 type Mutation {

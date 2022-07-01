@@ -2,6 +2,8 @@ type Exercise {
 	id: ID!
 	name: String!
 	description: String
+	pushPull: PushPull
+	upperLower: UpperLower
 	bodyPart: BodyPart
 }
 
@@ -10,9 +12,26 @@ input ExerciseInput {
 	description: String
 }
 
+enum PushPull {
+	PUSH
+	PULL
+	STATIC
+}
+
+enum UpperLower {
+	UPPER
+	LOWER
+	CORE
+}
+
 enum BodyPart {
 	CHEST
 	BACK
-	LEGS
-	ARMS
+	QUADS
+	HAMSTRINGS
+	CALVES
+	BICEPS
+	TRICEPS
+	SHOULDERS
+	ABS
 }

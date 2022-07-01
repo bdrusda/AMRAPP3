@@ -10,10 +10,34 @@ export const findExercise = async (db: any, id: number) => {
 	return response;
 };
 
-export const findExercises = async (db: any) => {
-	console.log(`Finding all exercisex`);
-	let response = await db.exerciseRepo.find();
+export const findExercises = async (db: any, input: any) => {
+	let response;
+	let name = input?.name;
+	let pushPull = input?.pushPull;
+	let upperLower = input?.upperLower;
+	let bodyPart = input?.bodyPart;
+	if (name) {
+		// TODO going to have to figure out how to do a partial match here
+		console.log(`Finding exercises that match name ${name}`);
+		// TODO implement
+	} else if (pushPull) {
+		console.log(`Finding exercises by pushPull ${pushPull}`);
+		response = await db.exerciseRepo.find(pushPull);
+		// TODO implement
+	} else if (upperLower) {
+		console.log(`Finding exercises by upperLower ${upperLower}`);
+		response = await db.exerciseRepo.find(upperLower);
+		// TODO implement
+	} else if (bodyPart) {
+		console.log(`Finding exercises by bodyPart ${bodyPart}`);
+		response = await db.exerciseRepo.find(bodyPart);
+		// TODO implement
+	} else {
+		console.log(`Finding all exercises`);
+		response = await db.exerciseRepo.find();
+	}
 	console.log(response);
+
 	return response;
 };
 
@@ -22,17 +46,21 @@ export const addExercise = async (
 	id: number,
 	name: string,
 	description: string,
+	upperLower: string,
+	pushPull: string,
 	bodyPart: string
 ) => {
 	console.log(
-		`Add exercise with id ${id}, name: ${name}, description ${description}, body part ${bodyPart}`
+		`Add exercise with id ${id}, name: ${name}, description ${description}, 
+		upper lower ${upperLower}, push pull ${pushPull}, body part ${bodyPart}`
 	);
 	let exercise: typeof Exercise;
 	// TODO do we want to try/catch everything? maybe we can just error check better, idk
 	try {
 		if (id) {
 			console.log(
-				`Updating exercise ${id} with name: ${name}, description ${description}, body part ${bodyPart}`
+				`Updating exercise with id ${id}, name: ${name}, description ${description}, 
+				upper lower ${upperLower}, push pull ${pushPull}, body part ${bodyPart}`
 			);
 			// We do not need to persist this entity because it was returned by the EM.  It is automatically tracked
 			exercise = await db.exerciseRepo.findOne({ id: id });
@@ -40,14 +68,23 @@ export const addExercise = async (
 				wrap(exercise).assign({
 					name: name || exercise.name,
 					description: description || exercise.description,
+					pushPull: pushPull || exercise.pushPull,
+					upperLower: upperLower || exercise.upperLower,
 					bodyPart: bodyPart || exercise.bodyPart,
 				});
 			}
 		} else {
 			console.log(
-				`Creating new exercise with name: ${name}, description ${description}, body part ${bodyPart}`
+				`Creating new exercise with id ${id}, name: ${name}, description ${description}, 
+				upper lower ${upperLower}, push pull ${pushPull}, body part ${bodyPart}`
 			);
-			exercise = new Exercise(name, description, bodyPart);
+			exercise = new Exercise(
+				name,
+				description,
+				pushPull,
+				upperLower,
+				bodyPart
+			);
 			await db.todoRepo.persist(exercise);
 		}
 		await db.todoRepo.flush();
