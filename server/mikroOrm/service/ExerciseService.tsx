@@ -18,11 +18,11 @@ export const findExercises = async (db: any, input: any) => {
 	let bodyPart = input?.bodyPart;
 
 	let queryParams = {} as any;
-	// TODO going to have to figure out how to do a partial match here
-	if (name) queryParams.name = name;
+	if (name) queryParams.name = { $like: `%${name}%` };
 	if (pushPull) queryParams.pushPull = pushPull;
 	if (upperLower) queryParams.upperLower = upperLower;
 	if (bodyPart) queryParams.bodyPart = bodyPart;
+
 	console.log(`Finding all by queryParams: ${JSON.stringify(queryParams)}`);
 	response = await db.exerciseRepo.find(queryParams);
 	console.log(response);
