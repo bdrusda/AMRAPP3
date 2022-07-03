@@ -16,26 +16,15 @@ export const findExercises = async (db: any, input: any) => {
 	let pushPull = input?.pushPull;
 	let upperLower = input?.upperLower;
 	let bodyPart = input?.bodyPart;
-	if (name) {
-		// TODO going to have to figure out how to do a partial match here
-		console.log(`Finding exercises that match name ${name}`);
-		// TODO implement
-	} else if (pushPull) {
-		console.log(`Finding exercises by pushPull ${pushPull}`);
-		response = await db.exerciseRepo.find(pushPull);
-		// TODO implement
-	} else if (upperLower) {
-		console.log(`Finding exercises by upperLower ${upperLower}`);
-		response = await db.exerciseRepo.find(upperLower);
-		// TODO implement
-	} else if (bodyPart) {
-		console.log(`Finding exercises by bodyPart ${bodyPart}`);
-		response = await db.exerciseRepo.find(bodyPart);
-		// TODO implement
-	} else {
-		console.log(`Finding all exercises`);
-		response = await db.exerciseRepo.find();
-	}
+
+	let queryParams = {} as any;
+	// TODO going to have to figure out how to do a partial match here
+	if (name) queryParams.name = name;
+	if (pushPull) queryParams.pushPull = pushPull;
+	if (upperLower) queryParams.upperLower = upperLower;
+	if (bodyPart) queryParams.bodyPart = bodyPart;
+	console.log(`Finding all by queryParams: ${JSON.stringify(queryParams)}`);
+	response = await db.exerciseRepo.find(queryParams);
 	console.log(response);
 
 	return response;
