@@ -32,7 +32,7 @@ export interface DBRequest extends Request {
 
 	//gql
 	app.use(
-		'/todo',
+		'/amrapp',
 		graphqlHTTP({
 			schema,
 			context: { db: DB },

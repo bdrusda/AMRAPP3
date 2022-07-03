@@ -85,9 +85,9 @@ export const addExercise = async (
 				upperLower,
 				bodyPart
 			);
-			await db.todoRepo.persist(exercise);
+			await db.exerciseRepo.persist(exercise);
 		}
-		await db.todoRepo.flush();
+		await db.exerciseRepo.flush();
 	} catch (e: any) {
 		console.error(e.message);
 	}
@@ -101,14 +101,14 @@ export const deleteExercise = async (db: any, id: number) => {
 			console.log('Deleting exercise with id ' + id);
 			let response = await db.exerciseRepo.nativeDelete({ id: id });
 			if (response) {
-				console.log(`Successfully exercise todo with id ${id}`);
+				console.log(`Successfully exercise exercise with id ${id}`);
 			} else {
 				console.log(`No record found, unable to delete exercise with id ${id}`);
 			}
 		} else {
 			console.error('Unable to delete exercise, no id provided');
 		}
-		await db.todoRepo.flush();
+		await db.exerciseRepo.flush();
 	} catch (e: any) {
 		console.error(e.message);
 	}

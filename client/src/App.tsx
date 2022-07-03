@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react';
 
 // components
-import InputTodo from './components/InputTodo';
-import ListTodos from './components/ListTodos';
+import ExerciseInput from './components/ExerciseInput';
+import ExerciseList from './components/ExerciseList';
 
 function App() {
 	return (
 		<Fragment>
 			<div className='container'>
-				<InputTodo />
-				<ListTodos />
+				<ExerciseInput />
+				<ExerciseList />
 			</div>
 		</Fragment>
 	);

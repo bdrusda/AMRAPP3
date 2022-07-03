@@ -9,7 +9,11 @@ type Exercise {
 
 input ExerciseInput {
 	id: ID
+	name: String
 	description: String
+	pushPull: PushPull
+	upperLower: UpperLower
+	bodyPart: BodyPart
 }
 
 enum PushPull {

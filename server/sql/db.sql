@@ -24,4 +24,4 @@ CREATE TABLE workout(); -- collection of exercises, start time, end time -- exer
 
 
 -- perusing
-select * from todo;
+select * from exercise;

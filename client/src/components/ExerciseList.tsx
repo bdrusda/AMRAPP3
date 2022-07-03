@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import EditTodo from './EditTodo';
-import { Todo } from '../entity/Todo';
+import EditExercise from './EditExercise';
+import { Exercise } from '../entity/Exercise';
 import * as Constants from '../AppConstants';
 
-const ListTodos = () => {
-	const [todos, setTodos] = useState([]);
+const ExerciseList = () => {
+	const [exercises, setExercises] = useState([]);
 
-	const getTodos = async () => {
+	const getExercises = async () => {
 		try {
 			const promise = await fetch(Constants.baseUrl, {
 				method: 'POST',
@@ -14,9 +14,12 @@ const ListTodos = () => {
 				body: JSON.stringify({
 					query: `
 						query {
-							todos {
-								id
+							exercises {
+								name
 								description
+								pushPull
+								upperLower
+								bodyPart
 							}
 						}
 					`,
@@ -24,28 +27,28 @@ const ListTodos = () => {
 				}),
 			});
 			const response = await promise.json();
-			const data = response?.data?.todos;
+			const data = response?.data?.exercises;
 			if (data) {
-				setTodos(data);
-				console.log(`Successfully got todos ${data}`);
+				setExercises(data);
+				console.log(`Successfully got exercises ${data}`);
 			} else {
-				console.error(`Unable to get todos ${data}`);
+				console.error(`Unable to get exercises ${data}`);
 			}
 		} catch (e: any) {
 			console.error(e.message);
 		}
 	};
 
-	const deleteTodo = async (id: Number) => {
+	const deleteExercise = async (id: Number) => {
 		try {
 			const promise = await fetch(Constants.baseUrl, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					query: `
-						mutation deleteTodo($id: ID!){
+						mutation deleteExercise($id: ID!){
 							delete(input: {id: $id}) {
-								description
+								id
 							}
 						}
 					`,
@@ -55,9 +58,11 @@ const ListTodos = () => {
 			const response = await promise.json();
 			const data = response?.data;
 			if (data) {
-				setTodos(todos.filter((todo: Todo) => todo.id !== id));
+				setExercises(
+					exercises.filter((exercise: Exercise) => exercise.id !== id)
+				);
 			} else {
-				console.error(`Unable to delete todo ${id}`);
+				console.error(`Unable to delete exercise ${id}`);
 			}
 			console.log(data);
 		} catch (e: any) {
@@ -66,32 +71,39 @@ const ListTodos = () => {
 	};
 
 	useEffect(() => {
-		getTodos();
+		getExercises();
 	}, []);
 
 	return (
+		// TODO create layout fragment for exercises
 		<Fragment>
 			<table className='table mt-5 text-center'>
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th>Name</th>
 						<th>Description</th>
+						<th>Push/Pull</th>
+						<th>Upper/Lower</th>
+						<th>Body Part</th>
 						<td>Edit</td>
 						<td>Delete</td>
 					</tr>
 				</thead>
 				<tbody>
-					{todos.map((todo: Todo) => (
-						<tr key={todo.id}>
-							<td>{todo.id}</td>
-							<td>{todo.description}</td>
+					{exercises.map((exercise: Exercise) => (
+						<tr key={exercise.id}>
+							<td>{exercise.name}</td>
+							<td>{exercise.description}</td>
+							<td>{exercise.pushPull}</td>
+							<td>{exercise.upperLower}</td>
+							<td>{exercise.bodyPart}</td>
 							<td>
-								<EditTodo {...todo} />
+								<EditExercise {...exercise} />
 							</td>
 							<td>
 								<button
 									className='btn btn-danger'
-									onClick={() => deleteTodo(todo.id)}>
+									onClick={() => deleteExercise(exercise.id)}>
 									Delete
 								</button>
 							</td>
@@ -103,4 +115,4 @@ const ListTodos = () => {
 	);
 };
 
-export default ListTodos;
+export default ExerciseList;

@@ -1,25 +1,35 @@
 import React, { Fragment, useState } from 'react';
-import { Todo } from '../entity/Todo';
+import { Exercise } from '../entity/Exercise';
 import * as Constants from '../AppConstants';
 
-const EditTodo = (todo: Todo) => {
+const EditExercise = (exercise: Exercise) => {
 	// Our descripton variable is maintained by the setDescription method and init'd by useState here(?)
-	const [description, setDescription] = useState(todo.description || '');
-	const editTodo = async (e: React.MouseEvent) => {
+	const [name, setName] = useState(exercise.name || '');
+	const [description, setDescription] = useState(exercise.description || '');
+	const [pushPull, setPushPull] = useState(exercise.pushPull || '');
+	const [upperLower, setUpperLower] = useState(exercise.upperLower || '');
+	const [bodyPart, setBodyPart] = useState(exercise.bodyPart || '');
+	const editExercise = async (e: React.MouseEvent) => {
 		try {
 			const promise = await fetch(Constants.baseUrl, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					query: `
-						mutation addTodo($id: ID!, $description: String!){
-							add(input: {id: $id, description: $description}) {
+						mutation addExercise($input: ExerciseInput!){
+							add(input: $input}) {
 								id
-								description
 							}
 						}
 					`,
-					variables: { id: todo.id, description: description },
+					variables: {
+						id: exercise.id,
+						name: name,
+						description: description,
+						pushPull: pushPull,
+						upperLower: upperLower,
+						bodyPart: bodyPart,
+					},
 				}),
 			});
 			const response = await promise.json();
@@ -38,16 +48,16 @@ const EditTodo = (todo: Todo) => {
 			<button
 				type='button'
 				className='btn btn-primary'
-				// Bootstrap item - Toggles our modal when clicked and has a set id so we know which todo this is
+				// Bootstrap item - Toggles our modal when clicked and has a set id so we know which exercise this is
 				data-bs-toggle='modal'
 				// Bootstrap item - Takes in a css selector that points to the html element we want to change
-				data-bs-target={`#id${todo.id}`}>
+				data-bs-target={`#id${exercise.id}`}>
 				Edit
 			</button>
 
 			<div
 				className='modal fade'
-				id={`id${todo.id}`}
+				id={`id${exercise.id}`}
 				tabIndex={-1}
 				aria-labelledby='editModalLabel'
 				aria-hidden='true'>
@@ -55,15 +65,15 @@ const EditTodo = (todo: Todo) => {
 					<div className='modal-content'>
 						<div className='modal-header'>
 							<h5 className='modal-title' id='editModalLabel'>
-								Edit Todo Description
+								Edit Exercise Description
 							</h5>
 							<button
 								type='button'
 								className='btn-close'
 								data-bs-dismiss='modal'
 								aria-label='Close'
-								// On close we set description to original value
-								onClick={() => setDescription(todo.description)}></button>
+								// On close we set description to original value	// TODO we need to do much more here
+								onClick={() => setDescription(exercise.description)}></button>
 						</div>
 						<div className='modal-body'>
 							<input
@@ -78,8 +88,8 @@ const EditTodo = (todo: Todo) => {
 							<button
 								type='button'
 								className='btn btn-primary'
-								// On save we call  editTodo which grabs our updated global description value
-								onClick={(e) => editTodo(e)}>
+								// On save we call  editExercise which grabs our updated global description value
+								onClick={(e) => editExercise(e)}>
 								Save
 							</button>
 							<button
@@ -87,7 +97,7 @@ const EditTodo = (todo: Todo) => {
 								className='btn btn-danger'
 								data-bs-dismiss='modal'
 								// On cancel we return description to its original value
-								onClick={() => setDescription(todo.description)}>
+								onClick={() => setDescription(exercise.description)}>
 								Cancel
 							</button>
 						</div>
@@ -98,4 +108,4 @@ const EditTodo = (todo: Todo) => {
 	);
 };
 
-export default EditTodo;
+export default EditExercise;
