@@ -25,3 +25,8 @@ CREATE TABLE workout(); -- collection of exercises, start time, end time -- exer
 
 -- perusing
 select * from exercise;
+
+
+-- removing tabs from names
+update exercise set name = RIGHT(name, length(name)-1);
+update exercise set name = left(name, length(name)-1);
