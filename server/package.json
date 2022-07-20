@@ -35,6 +35,6 @@
 		]
 	},
 	"nodemonConfig": {
-		"ext": "js,json,hbs,html,graphql,ts,tsx,css"
+		"ext": "js,json,hbs,html,graphql,ts,tsx,css,less"
 	}
 }
