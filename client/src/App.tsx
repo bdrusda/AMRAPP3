@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
+// TODO work on bulk importing css
+import './styles/ExerciseListView.css';
 
 // components
-import ExerciseInput from './components/ExerciseInput';
-import ExerciseList from './components/ExerciseList';
+import ExerciseInput from './components/exercise/ExerciseInput';
+import ExerciseList from './components/exercise/ExerciseList';
 
 function App() {
 	return (

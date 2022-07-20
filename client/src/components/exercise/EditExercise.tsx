@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
-import { Exercise } from '../entity/Exercise';
-import * as Constants from '../AppConstants';
+import { Exercise } from '../../entity/Exercise';
+import * as Constants from '../../AppConstants';
 
 const EditExercise = (exercise: Exercise) => {
 	// Our descripton variable is maintained by the setDescription method and init'd by useState here(?)

@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { FormEvent } from 'react';
-import * as Constants from '../AppConstants';
+import * as Constants from '../../AppConstants';
 
 const ExerciseInput = () => {
 	const [name, setName] = useState('');
