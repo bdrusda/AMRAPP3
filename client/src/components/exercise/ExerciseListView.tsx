@@ -41,15 +41,15 @@ const ExerciseList = (exercise: Exercise) => {
 
 	return (
 		<Fragment>
-			<tr key={exercise.id}>
+			<tr className='exerciseListView' key={exercise.id}>
 				<td className='exerciseNameSection'>
-					<div className='exerciseName'>{exercise.name}</div>
+					<div className='exerciseName darkBlueText'>{exercise.name}</div>
 				</td>
 				<td className='exerciseDescriptorSection'>
 					{/*<div>{exercise.description}</div>*/}
-					<div>{exercise.pushPull}</div>
-					<div>{exercise.upperLower}</div>
-					<div>{exercise.bodyPart}</div>
+					<div className='darkBlueText'>{exercise.pushPull}</div>
+					<div className='darkBlueText'>{exercise.upperLower}</div>
+					<div className='darkBlueText'>{exercise.bodyPart}</div>
 				</td>
 				<td className='exerciseMutatorSection'>
 					<div>
@@ -57,7 +57,7 @@ const ExerciseList = (exercise: Exercise) => {
 					</div>
 					<div>
 						<button
-							className='btn btn-danger'
+							className='button deleteButton'
 							onClick={() => deleteExercise(exercise.id)}>
 							Delete
 						</button>

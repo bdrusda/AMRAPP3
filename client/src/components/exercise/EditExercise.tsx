@@ -47,7 +47,7 @@ const EditExercise = (exercise: Exercise) => {
 		<Fragment>
 			<button
 				type='button'
-				className='btn btn-primary'
+				className='button'
 				// Bootstrap item - Toggles our modal when clicked and has a set id so we know which exercise this is
 				data-bs-toggle='modal'
 				// Bootstrap item - Takes in a css selector that points to the html element we want to change
@@ -87,14 +87,14 @@ const EditExercise = (exercise: Exercise) => {
 						<div className='modal-footer'>
 							<button
 								type='button'
-								className='btn btn-primary'
+								className='button'
 								// On save we call  editExercise which grabs our updated global description value
 								onClick={(e) => editExercise(e)}>
 								Save
 							</button>
 							<button
 								type='button'
-								className='btn btn-danger'
+								className='button deleteButton'
 								data-bs-dismiss='modal'
 								// On cancel we return description to its original value
 								onClick={() => setDescription(exercise.description)}>

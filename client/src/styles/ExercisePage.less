@@ -1,0 +1,49 @@
+@import 'Colors.less';
+
+.exercisePage {
+	background-color: @lightestBlue;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	.table {
+		border-collapse: separate;
+		border-spacing: 0 1rem;
+	}
+
+	.exerciseListView {
+		padding-bottom: 10rem;
+		background-color: @lightBlue;
+		height: 6rem;
+
+		.exerciseNameSection {
+			column-span: 2;
+			vertical-align: middle;
+
+			.exerciseName {
+				font-size: 1.5rem;
+			}
+		}
+
+		.exerciseDescriptorSection {
+			column-span: 1;
+			div {
+				font-weight: bold;
+			}
+		}
+
+		.exerciseMutatorSection {
+			column-span: 1;
+			display: flex;
+			height: inherit;
+			.div {
+				height: inherit;
+			}
+			.button {
+				margin-top: 1rem;
+			}
+		}
+	}
+}
