@@ -1,5 +1,5 @@
 // mORM
-import { wrap } from '@mikro-orm/core';
+import { wrap, QueryOrder } from '@mikro-orm/core';
 
 const { Exercise } = require('../../mikroOrm/entity/Exercise');
 
@@ -24,7 +24,9 @@ export const findExercises = async (db: any, input: any) => {
 	if (bodyPart) queryParams.bodyPart = bodyPart;
 
 	console.log(`Finding all by queryParams: ${JSON.stringify(queryParams)}`);
-	response = await db.exerciseRepo.find(queryParams);
+	response = await db.exerciseRepo.find(queryParams, {
+		orderBy: { name: QueryOrder.ASC },
+	});
 	console.log(response);
 
 	return response;

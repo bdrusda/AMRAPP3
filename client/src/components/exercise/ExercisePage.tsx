@@ -8,6 +8,7 @@ function ExercisePage() {
 	return (
 		<Fragment>
 			<div className='exercisePage'>
+				<h1 className='text-center mt-5'>Exercise List</h1>
 				<ExerciseInput />
 				<ExerciseList />
 			</div>

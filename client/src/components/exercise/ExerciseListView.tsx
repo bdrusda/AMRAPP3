@@ -3,7 +3,7 @@ import EditExercise from './EditExercise';
 import { Exercise } from '../../entity/Exercise';
 import * as Constants from '../../AppConstants';
 
-const ExerciseList = (exercise: Exercise) => {
+const ExerciseListView = (exercise: Exercise) => {
 	const [exercises, setExercises] = useState([]);
 
 	const deleteExercise = async (id: Number) => {
@@ -68,4 +68,4 @@ const ExerciseList = (exercise: Exercise) => {
 	);
 };
 
-export default ExerciseList;
+export default ExerciseListView;

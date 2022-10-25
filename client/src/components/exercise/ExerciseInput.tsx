@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { FormEvent } from 'react';
 import * as Constants from '../../AppConstants';
+import Label from '../generics/Label';
 
 const ExerciseInput = () => {
 	const [name, setName] = useState('');
@@ -40,20 +41,33 @@ const ExerciseInput = () => {
 			console.error(e.message);
 		}
 	};
+	//<Label {...{ name: 'name', text: 'text' }} />
 
 	return (
 		<Fragment>
-			<h1 className='text-center mt-5'>Exercise List</h1>
-			<form className='d-flex mt-5' onSubmit={onSubmitForm}>
-				<input
-					type='text'
-					className='form-control'
-					value={description}
-					// TODO lots to change here
-					onChange={(e) => setDescription(e.target.value)}
-				/>
-				<button className='btn btn-success'>Add</button>
-			</form>
+			<div className='exerciseAdd'>
+				<div className='heading'>Add an exercise</div>
+				<form className='exerciseForm' onSubmit={onSubmitForm}>
+					<Label {...{ name: 'Name', id: 'exerciseAddNameLabel' }} />
+					<input
+						type='text'
+						className='form-control'
+						id='exerciseAddName'
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+					/>
+					<Label
+						{...{ name: 'Description', id: 'exerciseAddDescriptionLabel' }}
+					/>
+					<input
+						type='text'
+						className='form-control'
+						value={description}
+						onChange={(e) => setDescription(e.target.value)}
+					/>
+					<button className='button addButton'>Add</button>
+				</form>
+			</div>
 		</Fragment>
 	);
 };
