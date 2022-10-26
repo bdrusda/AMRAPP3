@@ -1,7 +1,7 @@
 @import 'Colors.less';
 
 .exercisePage {
-	background-color: @lightestBlue;
+	background-color: @lightGray;
 	width: 50%;
 	margin-left: auto;
 	margin-right: auto;
@@ -14,7 +14,7 @@
 	}
 
 	.exerciseAdd {
-		background-color: @pastelYellow;
+		background-color: @lightTan;
 		.exerciseForm {
 			display: flex;
 			input {
@@ -22,13 +22,12 @@
 			}
 		}
 		padding: 1rem;
-		border-radius: 0.25rem;
 		opacity: 95%;
 	}
 
 	.exerciseListView {
 		padding-bottom: 10rem;
-		background-color: @lightBlue;
+		background-color: @lightTan;
 		height: 6rem;
 		opacity: 95%;
 
@@ -59,5 +58,26 @@
 				margin-top: 1rem;
 			}
 		}
+	}
+
+	.options {
+		padding-bottom: 0.25rem;
+		margin-bottom: 1rem;
+		.showMore,
+		.showLess {
+			color: @white;
+			background-color: @matteBlack;
+			width: inherit;
+			text-align: center;
+			font-size: 1.5rem;
+			margin-bottom: 3rem;
+			&.hide {
+				display: none;
+			}
+		}
+	}
+
+	.exerciseListView {
+		border-color: @tan;
 	}
 }

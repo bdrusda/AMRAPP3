@@ -41,15 +41,15 @@ const ExerciseListView = (exercise: Exercise) => {
 
 	return (
 		<Fragment>
-			<tr className='exerciseListView' key={exercise.id}>
+			<tr className='exerciseListView softEdges' key={exercise.id}>
 				<td className='exerciseNameSection'>
-					<div className='exerciseName darkBlueText'>{exercise.name}</div>
+					<div className='exerciseName primaryText'>{exercise.name}</div>
 				</td>
 				<td className='exerciseDescriptorSection'>
 					{/*<div>{exercise.description}</div>*/}
-					<div className='darkBlueText'>{exercise.pushPull}</div>
-					<div className='darkBlueText'>{exercise.upperLower}</div>
-					<div className='darkBlueText'>{exercise.bodyPart}</div>
+					<div className='primaryText'>{exercise.pushPull}</div>
+					<div className='primaryText'>{exercise.upperLower}</div>
+					<div className='primaryText'>{exercise.bodyPart}</div>
 				</td>
 				<td className='exerciseMutatorSection'>
 					<div>

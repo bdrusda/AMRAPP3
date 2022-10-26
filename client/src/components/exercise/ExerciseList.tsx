@@ -5,6 +5,7 @@ import * as Constants from '../../AppConstants';
 
 const ExerciseList = () => {
 	const [exercises, setExercises] = useState([]);
+	const [itemsToShow, setItemsToShow] = useState(10);
 
 	const getExercises = async () => {
 		try {
@@ -39,7 +40,10 @@ const ExerciseList = () => {
 		}
 	};
 
-	// TODO we might need to see how to do delete and update list now that the exercise is encapsulated
+	const updateItemsToShow = (number: number) => {
+		if (number == -1) number = 10000;
+		setItemsToShow(number);
+	};
 
 	useEffect(() => {
 		getExercises();
@@ -50,11 +54,27 @@ const ExerciseList = () => {
 		<Fragment>
 			<table className='table mt-5 text-center'>
 				<tbody>
-					{exercises.map((exercise: Exercise) => (
+					{exercises.slice(0, itemsToShow).map((exercise: Exercise) => (
 						<ExerciseListView {...exercise} />
 					))}
 				</tbody>
 			</table>
+			<div className='options'>
+				<div
+					className={`button optionButton showMore ${
+						itemsToShow == 10 ? '' : 'hide'
+					}`}
+					onClick={() => updateItemsToShow(-1)}>
+					Show More
+				</div>
+				<div
+					className={`button optionButton showLess ${
+						itemsToShow == 10 ? 'hide' : ''
+					}`}
+					onClick={() => updateItemsToShow(10)}>
+					Show Less
+				</div>
+			</div>
 		</Fragment>
 	);
 };

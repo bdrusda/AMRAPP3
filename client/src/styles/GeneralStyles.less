@@ -1,7 +1,7 @@
 @import 'Colors.less';
 
-.darkBlueText {
-	color: @darkBlue;
+.primaryText {
+	color: @matteBlack;
 }
 
 .button {
@@ -10,27 +10,42 @@
 	height: 2.5rem;
 	color: @white;
 	background-color: @pastelBlue;
-	width: 4rem;
+	width: fit-content;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	min-width: 4rem;
 	margin-right: 0.5rem;
 	&.deleteButton {
-		background-color: @pastelRed;
+		background-color: @darkRed;
 	}
 
 	&.addButton {
-		background-color: @mediumGreen;
+		background-color: @pastelGreen;
 	}
 }
 
 .label {
 	font-size: 1rem;
 	font-weight: bold;
-	color: @darkBlue;
+	color: @matteBlack;
 }
 
 .heading {
 	font-size: 1.5rem;
 	font-weight: 500;
-	color: @darkBlue;
+	color: @matteBlack;
 	text-align: center;
 	padding-bottom: 1rem;
+}
+
+body {
+	background-color: @matteBlack;
+}
+
+.title {
+	color: @matteBlack;
+}
+
+.softEdges {
+	border-radius: 0.25rem !important;
 }

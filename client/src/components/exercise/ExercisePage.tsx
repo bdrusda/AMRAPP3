@@ -7,8 +7,8 @@ import ExerciseList from './ExerciseList';
 function ExercisePage() {
 	return (
 		<Fragment>
-			<div className='exercisePage'>
-				<h1 className='text-center mt-5'>Exercise List</h1>
+			<div className='exercisePage softEdges'>
+				<h1 className='text-center mt-5 title'>Exercise List</h1>
 				<ExerciseInput />
 				<ExerciseList />
 			</div>

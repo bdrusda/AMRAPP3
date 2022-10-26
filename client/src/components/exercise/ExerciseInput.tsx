@@ -45,7 +45,7 @@ const ExerciseInput = () => {
 
 	return (
 		<Fragment>
-			<div className='exerciseAdd'>
+			<div className='exerciseAdd softEdges'>
 				<div className='heading'>Add an exercise</div>
 				<form className='exerciseForm' onSubmit={onSubmitForm}>
 					<Label {...{ name: 'Name', id: 'exerciseAddNameLabel' }} />
