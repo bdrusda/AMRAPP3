@@ -16,9 +16,27 @@
 	.exerciseAdd {
 		background-color: @lightPittBlue;
 		.exerciseForm {
-			display: flex;
+			display: block;
 			input {
 				margin-right: 1rem;
+			}
+			.coreInfo,
+			.auxiliaryInfo {
+				display: flex;
+				.dropdown {
+					width: 33%;
+					margin-top: 1rem;
+					margin-bottom: 1rem;
+					margin-left: 3rem;
+					margin-right: 3rem;
+				}
+			}
+
+			.addButtonDiv {
+				text-align: center;
+				.addButton {
+					width: 50%;
+				}
 			}
 		}
 		padding: 1rem;
