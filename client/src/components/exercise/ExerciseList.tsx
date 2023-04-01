@@ -16,6 +16,7 @@ const ExerciseList = () => {
 					query: `
 						query {
 							exercises {
+								id
 								name
 								description
 								pushPull
