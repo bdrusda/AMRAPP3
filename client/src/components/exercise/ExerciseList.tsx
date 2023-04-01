@@ -3,52 +3,14 @@ import ExerciseListView from './ExerciseListView';
 import { Exercise } from '../../entity/Exercise';
 import * as Constants from '../../AppConstants';
 
-const ExerciseList = () => {
-	const [exercises, setExercises] = useState([]);
+const ExerciseList = (exerciseInfo: any) => {
+	const exercises = exerciseInfo.exercises;
 	const [itemsToShow, setItemsToShow] = useState(10);
-
-	const getExercises = async () => {
-		try {
-			const promise = await fetch(Constants.baseUrl, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					query: `
-						query {
-							exercises {
-								id
-								name
-								description
-								pushPull
-								upperLower
-								bodyPart
-							}
-						}
-					`,
-					variables: {},
-				}),
-			});
-			const response = await promise.json();
-			const data = response?.data?.exercises;
-			if (data) {
-				setExercises(data);
-				console.log(`Successfully got exercises ${data}`);
-			} else {
-				console.error(`Unable to get exercises ${data}`);
-			}
-		} catch (e: any) {
-			console.error(e.message);
-		}
-	};
 
 	const updateItemsToShow = (number: number) => {
 		if (number == -1) number = 10000;
 		setItemsToShow(number);
 	};
-
-	useEffect(() => {
-		getExercises();
-	}, []);
 
 	return (
 		// TODO create layout fragment for exercises

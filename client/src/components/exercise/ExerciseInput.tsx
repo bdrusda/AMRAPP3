@@ -3,7 +3,7 @@ import { FormEvent } from 'react';
 import * as Constants from '../../AppConstants';
 import Label from '../generics/Label';
 
-const ExerciseInput = () => {
+const ExerciseInput = (callback: any) => {
 	const [name, setName] = useState('');
 	const [description, setDescription] = useState('');
 	const [pushPull, setPushPull] = useState('PUSH');
@@ -37,6 +37,9 @@ const ExerciseInput = () => {
 			const response = await promise.json();
 			const data = response?.data;
 			console.log(data);
+			if (!data.error) {
+				callback.callback();
+			}
 			window.location.href = '/';
 		} catch (e: any) {
 			console.error(e.message);

@@ -92,7 +92,7 @@ export const deleteExercise = async (db: any, id: number) => {
 			console.log('Deleting exercise with id ' + id);
 			let response = await db.exerciseRepo.nativeDelete({ id: id });
 			if (response) {
-				console.log(`Successfully exercise exercise with id ${id}`);
+				console.log(`Successfully deleted exercise with id ${id}`);
 			} else {
 				console.log(`No record found, unable to delete exercise with id ${id}`);
 			}
