@@ -27,7 +27,6 @@ export const findExercises = async (db: any, input: any) => {
 	response = await db.exerciseRepo.find(queryParams, {
 		orderBy: { name: QueryOrder.ASC },
 	});
-	console.log(response);
 
 	return response;
 };

@@ -3,8 +3,10 @@ import ExerciseListView from './ExerciseListView';
 import { Exercise } from '../../entity/Exercise';
 import * as Constants from '../../AppConstants';
 
-const ExerciseList = (exerciseInfo: any) => {
+const ExerciseList = (data: any) => {
+	const exerciseInfo = data.exerciseInfo;
 	const exercises = exerciseInfo.exercises;
+	const setExercises = exerciseInfo.setExercises;
 	const [itemsToShow, setItemsToShow] = useState(10);
 
 	const updateItemsToShow = (number: number) => {
@@ -18,7 +20,14 @@ const ExerciseList = (exerciseInfo: any) => {
 			<table className='table mt-5 text-center'>
 				<tbody>
 					{exercises.slice(0, itemsToShow).map((exercise: Exercise) => (
-						<ExerciseListView {...exercise} />
+						<ExerciseListView
+							exercise={exercise}
+							filterIdCallback={(id: any) => {
+								setExercises(
+									exercises.filter((exercise: Exercise) => exercise.id !== id)
+								);
+							}}
+						/>
 					))}
 				</tbody>
 			</table>

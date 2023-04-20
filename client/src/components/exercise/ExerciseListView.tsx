@@ -3,8 +3,14 @@ import EditExercise from './EditExercise';
 import { Exercise } from '../../entity/Exercise';
 import * as Constants from '../../AppConstants';
 
-const ExerciseListView = (exercise: Exercise) => {
-	const [exercises, setExercises] = useState([]);
+type ExerciseListViewData = {
+	exercise: Exercise;
+	filterIdCallback: any;
+};
+
+const ExerciseListView = (data: ExerciseListViewData) => {
+	const exercise = data.exercise;
+	const callback = data.filterIdCallback;
 
 	const deleteExercise = async (id: Number) => {
 		try {
@@ -25,9 +31,7 @@ const ExerciseListView = (exercise: Exercise) => {
 			const response = await promise.json();
 			const data = response?.data;
 			if (data) {
-				setExercises(
-					exercises.filter((exercise: Exercise) => exercise.id !== id)
-				);
+				callback(id);
 			} else {
 				console.error(`Unable to delete exercise ${id}`);
 			}

@@ -52,7 +52,7 @@ function ExercisePage() {
 			<div className='exercisePage softEdges'>
 				<h1 className='text-center mt-5 title'>Exercise List</h1>
 				<ExerciseInput getExercises={() => getExercises()} />
-				<ExerciseList exercises={exercises} />
+				<ExerciseList exerciseInfo={{ exercises, setExercises }} />
 			</div>
 		</Fragment>
 	);
